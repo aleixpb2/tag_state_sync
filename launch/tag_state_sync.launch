@@ -1,0 +1,13 @@
+<launch>
+    <!-- Arguments -->
+    <arg name="veh" default="SQ"/>
+    <arg name="num" default="01"/>
+
+    <!-- Set quadrotor name -->
+    <arg name="quadrotor" value="$(arg veh)$(arg num)s" />
+
+
+    <node name="tag_state_sync" pkg="tag_state_sync" type="tag_state_sync_node" output="screen" clear_params="true">
+        <param name="~name" value="$(arg quadrotor)"/>
+	</node>
+</launch>
