@@ -24,13 +24,15 @@ public:
         subs_tag.subscribe(node, "/tag_detections", 1);
         subs_state.subscribe(node, "/" + name + "/state",1);
 
-        sync.reset(new Sync(MySyncPolicy(10), subs_tag, subs_state));
+        sync.reset(new Sync(MySyncPolicy(1000), subs_tag, subs_state));
         sync->registerCallback(boost::bind(&Node::callback, this, _1, _2));
+
+        std::cout << "Starting tag_state_sync for drone " << name << std::endl;
     }
 
     void callback(const apriltags2_ros::AprilTagDetectionArrayConstPtr& detection, const acl_msgs::StateConstPtr state)
     {
-        std::cout << "entered inside " << std::endl;
+        //std::cout << "entered inside " << std::endl;
         //std::cout << "Msg: " << _msg->DebugString() << std::endl;
 
         tag_state_sync::TagState tagState;
