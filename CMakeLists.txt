@@ -1,6 +1,13 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(tag_state_sync)
 set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+
+if (NOT CMAKE_BUILD_TYPE)
+    # Options: Debug, Release, MinSizeRel, RelWithDebInfo
+    message(STATUS "No build type selected, default to Release")
+    set(CMAKE_BUILD_TYPE "Release")
+endif()
+
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
 
